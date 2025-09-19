@@ -16,5 +16,5 @@ if [ -z "$DOCS_DIR" ]; then
 	fi
 fi
 
-git clone https://github.com/SylEleuth/gruvbox-plus-icon-pack.git "$DOCS_DIR/Gruvbox"
-git clone https://github.com/Fausto-Korpsvart/Gruvbox-GTK-Theme "$DOCS_DIR/Gruvbox"
+git clone https://github.com/SylEleuth/gruvbox-plus-icon-pack.git "$DOCS_DIR/Gruvbox/gruvbox-plus-icon-pack"
+git clone https://github.com/Fausto-Korpsvart/Gruvbox-GTK-Theme "$DOCS_DIR/Gruvbox/Gruvbox-GTK-Theme"
