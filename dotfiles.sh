@@ -18,3 +18,5 @@ git clone git@github.com:andreygrigol/dotfiles.git "$DOCS_DIR/dotfiles"
 cd $DOCS_DIR/dotfiles
 cp -r nvim kitty starship.toml fish rofi ~/.config
 cp -r tmux/tmux.conf ~/.tmux.conf
+cd gnome/
+dconf load /org/gnome/shell/extensions/ <extensions.txt
