@@ -2,6 +2,8 @@
 
 mkdir ~/.local/share/icons
 
+SSH_DIR="$HOME/.ssh"
+
 if command -v pacman >/dev/null 2>&1; then
 	sudo pacman -S kitty fish tmux neovim nodejs npm python-virtualenv rofi starship
 elif command -v apt >/dev/null 2>&1; then
@@ -31,3 +33,11 @@ cd $DOCS_DIR/Gruvbox/Gruvbox-GTK-Theme/themes/
 ./install.sh -t orange -c dark -l --tweaks soft float macos
 
 cp -r $DOCS_DIR/Gruvbox/gruvbox-plus-icon-pack/Gruvbox-Plus-Dark ~/.local/share/icons/
+
+if [ ! "$SSH_DIR" ]; then
+	cd "$HOME"
+	ssh-keygen
+	cat "$HOME/.ssh/*.pub"
+else
+	echo "SSH key already exists!"
+fi
