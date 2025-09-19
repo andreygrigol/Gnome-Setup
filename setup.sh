@@ -4,6 +4,7 @@ mkdir ~/.local/share/icons
 
 SSH_DIR="$HOME/.ssh"
 
+# Checking if the package manager is apt or pacman
 if command -v pacman >/dev/null 2>&1; then
 	sudo pacman -S kitty fish tmux neovim nodejs npm python-virtualenv rofi starship
 elif command -v apt >/dev/null 2>&1; then
@@ -12,9 +13,14 @@ else
 	echo "Could not identify which package manager is using!"
 fi
 
+# Tmux TPM installation
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
 DOCS_DIR=$(xdg-user-dir DOCUMENTS)
+
 mkdir "$DOCS_DIR/Gruvbox"
 
+# Checking if it's Documents or Documentos folder (I'm brazilian so lol)
 if [ -z "$DOCS_DIR" ]; then
 	if [ -d "$HOME/Documentos" ]; then
 		DOCS_DIR="$HOME/Documentos"
@@ -26,6 +32,7 @@ if [ -z "$DOCS_DIR" ]; then
 	fi
 fi
 
+# Cloning and installing the Gruvbox themes for GTK and icons
 git clone https://github.com/SylEleuth/gruvbox-plus-icon-pack.git "$DOCS_DIR/Gruvbox/gruvbox-plus-icon-pack"
 git clone https://github.com/Fausto-Korpsvart/Gruvbox-GTK-Theme "$DOCS_DIR/Gruvbox/Gruvbox-GTK-Theme"
 
@@ -34,10 +41,11 @@ cd $DOCS_DIR/Gruvbox/Gruvbox-GTK-Theme/themes/
 
 cp -r $DOCS_DIR/Gruvbox/gruvbox-plus-icon-pack/Gruvbox-Plus-Dark ~/.local/share/icons/
 
+# Generate ssh key, so I can clone my dotfiles with ssh
 if [ ! "$SSH_DIR" ]; then
 	cd "$HOME"
 	ssh-keygen
-	cat "$HOME/.ssh/*.pub"
 else
 	echo "SSH key already exists!"
+	cat "$HOME/.ssh/*.pub"
 fi
